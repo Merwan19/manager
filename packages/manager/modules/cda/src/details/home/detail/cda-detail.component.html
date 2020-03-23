@@ -52,23 +52,20 @@
             <span data-ng-bind="$ctrl.detail.cephMons[0]"></span>
             <button
                 type="button"
-                class="no-style pull-right"
+                class="oui-button oui-button_ghost pull-right"
                 data-ng-click="$ctrl.accordions.monitor = !$ctrl.accordions.monitor"
                 data-ng-if="$ctrl.detail.cephMons.length > 1"
             >
-                <i class="glyphicon glyphicon-chevron-down"></i>
+                <i class="glyphicon button-icon glyphicon-chevron-down"></i>
             </button>
         </div>
-        <ul
-            class="left-space-p16 cda-monitor"
-            data-ng-if="$ctrl.accordions.monitor"
-        >
+        <ul class="pl-3 cda-monitor" data-ng-if="$ctrl.accordions.monitor">
             <button
                 type="button"
-                class="no-style pull-right"
+                class="oui-button oui-button_ghost pull-right"
                 data-ng-click="$ctrl.accordions.monitor = !$ctrl.accordions.monitor"
             >
-                <i class="glyphicon glyphicon-chevron-up"></i>
+                <i class="glyphicon button-icon glyphicon-chevron-up"></i>
             </button>
             <li
                 data-ng-repeat="monitor in $ctrl.detail.cephMons track by monitor"
