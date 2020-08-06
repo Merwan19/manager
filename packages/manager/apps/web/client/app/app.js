@@ -548,6 +548,11 @@ angular
         unregisterHook();
       });
     },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+    },
   );
 
 export default moduleName;
