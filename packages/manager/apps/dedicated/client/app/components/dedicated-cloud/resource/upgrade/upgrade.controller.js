@@ -31,6 +31,7 @@ export default class {
   }
 
   fetchCatalog() {
+    console.log('fetchCatalog');
     return this.$q
       .all({
         catalog: this.$http
@@ -60,26 +61,32 @@ export default class {
         this.service = service;
 
         this.plan = this.getPlanFromCatalog(planCode, catalog);
+        console.log('this.plan', this.plan);
 
         [this.bindings.renewalPeriod] = this.plan.details.pricings[
           `${ORDER_PARAMETERS.pricingModePrefix}${service.servicePackName}`
         ];
+        console.log('this.bindings.renewalPeriod', this.bindings.renewalPeriod);
       });
   }
 
   fetchServiceOptionPlanCode(target) {
+    console.log('fetchServiceOptionPlanCode', target);
+    console.log('this.type', this.type);
     const targetPlanCode = target.profileCode || target.profile || null;
     const targetFamily = this.type;
     return this.$http
       .get(`/order/cartServiceOption/privateCloud/${this.productId}`)
       .then((data) => get(data, 'data'))
-      .then((options) =>
-        find(
+      .then((options) => {
+        const option = find(
           options,
           ({ planCode, family }) =>
             planCode.startsWith(targetPlanCode) && family === targetFamily,
-        ),
-      )
+        );
+        console.log('option', option);
+        return option;
+      })
       .then(({ planCode }) => planCode);
   }
 
@@ -133,6 +140,7 @@ export default class {
   }
 
   getPlanFromCatalog(planCode, catalog) {
+    console.log('getPlanFromCatalog', planCode);
     let matchingPlan = null;
     get(catalog, 'plans', []).forEach((plan) => {
       if (plan && !matchingPlan) {
@@ -143,16 +151,21 @@ export default class {
           const matchingAddon = head(
             filter(addons, (addon) => get(addon, 'plan.planCode') === planCode),
           );
+          console.log('matchingAddon', matchingAddon);
           if (matchingAddon) {
+            console.log('addons', addons);
             matchingPlan = matchingAddon.plan;
           }
         }
       }
     });
+    console.log('matchingPlan', matchingPlan);
     return matchingPlan;
   }
 
   placeOrder() {
+    console.log('placeOrder');
+    console.log('this.plan', this.plan);
     const stringifiedExpressParameters = JSURL.stringify([
       {
         productId: ORDER_PARAMETERS.productId,
