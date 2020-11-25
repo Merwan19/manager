@@ -2444,6 +2444,7 @@ angular
           $scope.informations.gabaritName,
           {
             language: camelCase($scope.installation.selectLanguage),
+            installRTM: $scope.installation.options.installRTM || false,
             customHostname: $scope.installation.options.customHostname,
             installSqlServer: $scope.installation.options.installSqlServer,
             postInstallationScriptLink:
