@@ -14,6 +14,8 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
 
+import { RTM_GUIDE_URLS } from './dedicated-server-installation-ovh.constants';
+
 angular
   .module('App')
   .constant('TEMPLATE_OS_HARDWARE_RAID_ENUM', {
@@ -59,7 +61,8 @@ angular
       $scope.countFilter = [];
 
       $scope.constants = {
-        server: angular.copy($scope.currentActionData),
+        server: angular.copy($scope.currentActionData.server),
+        user: $scope.currentActionData.user,
 
         // get by Server.getOvhPartitionSchemesTemplates
         raidList: null, // Map[nbDisk, available raid]
@@ -281,6 +284,12 @@ angular
       };
 
       $scope.sshList = [];
+
+      $scope.rtmGuideLink = get(
+        RTM_GUIDE_URLS,
+        $scope.constants.user.ovhSubsidiary,
+        get(RTM_GUIDE_URLS, 'GB'),
+      );
 
       // ------STEP1------
       $scope.load = function load() {

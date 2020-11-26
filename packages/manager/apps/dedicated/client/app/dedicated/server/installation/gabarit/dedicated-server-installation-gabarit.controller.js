@@ -20,7 +20,7 @@ angular
       $stateParams,
     ) => {
       $scope.installation = {
-        server: angular.copy($scope.currentActionData),
+        server: angular.copy($scope.currentActionData.server),
         familyType: [],
         distributionList: null,
 

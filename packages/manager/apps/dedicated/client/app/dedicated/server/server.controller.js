@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import indexOf from 'lodash/indexOf';
@@ -5,7 +6,11 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-import { NO_AUTORENEW_COUNTRIES } from './server.constants';
+import {
+  NO_AUTORENEW_COUNTRIES,
+  BYOI_STARTING_MESSAGE,
+  BYOI_STATUS_ENUM,
+} from './server.constants';
 
 export default class ServerCtrl {
   /* @ngInject */
@@ -18,6 +23,7 @@ export default class ServerCtrl {
     $translate,
     constants,
     ovhUserPref,
+    Poller,
     Polling,
     Server,
     User,
@@ -30,6 +36,7 @@ export default class ServerCtrl {
     this.$translate = $translate;
     this.constants = constants;
     this.ovhUserPref = ovhUserPref;
+    this.Poller = Poller;
     this.Polling = Polling;
     this.Server = Server;
     this.User = User;
@@ -44,6 +51,7 @@ export default class ServerCtrl {
     this.$scope.serviceInfos = this.serviceInfos;
     this.$scope.specifications = this.specifications;
     this.$scope.worldPart = this.worldPart;
+    this.$scope.byoi = this.bringYourOwnImage; // to be burned on reinstall refactor!!!
 
     this.$scope.loaders = {
       autoRenew: true,
@@ -207,6 +215,9 @@ export default class ServerCtrl {
 
     this.$scope.$on('$destroy', () => {
       this.Polling.addKilledScope();
+      this.Poller.kill({
+        namespace: 'byoi_poller',
+      });
     });
 
     // Server Restart
@@ -310,6 +321,15 @@ export default class ServerCtrl {
     this.$scope.createStopBotherUserPref = () => {
       this.ovhUserPref.create('HOUSING_SUPPORT_PHONE_STOP_BOTHER', true);
     };
+
+    // poll for BYOI
+    // polling must be started if status of byoi is in doing and the message is starting
+    if (
+      get(this.bringYourOwnImage, 'status') === BYOI_STATUS_ENUM.DOING &&
+      get(this.bringYourOwnImage, 'message') === BYOI_STARTING_MESSAGE
+    ) {
+      this.launchBringYourOwnImagePolling();
+    }
 
     this.load();
   }
@@ -472,7 +492,7 @@ export default class ServerCtrl {
           if (
             includes(this.errorStatus, value.status.toString().toLowerCase())
           ) {
-            this.$scope.disable.installationInProgressError = true;
+            this.$scope.disable.installationInProgressError = value.error;
             this.$scope.disable.install = false;
           }
         });
@@ -562,6 +582,35 @@ export default class ServerCtrl {
       .catch(() => {
         this.$scope.disable.byOtherTask = false;
       });
+  }
+
+  launchBringYourOwnImagePolling() {
+    this.Poller.poll(
+      `/dedicated/server/${this.server.name}/bringYourOwnImage`,
+      null,
+      {
+        namespace: 'byoi_poller',
+        successRule: (byoi) => {
+          return (
+            byoi.status === BYOI_STATUS_ENUM.DOING &&
+            byoi.message !== BYOI_STARTING_MESSAGE
+          );
+        },
+      },
+    ).then(
+      (byoi) => {
+        this.$scope.byoi = byoi;
+      },
+      () => {
+        this.$scope.disable.install = false;
+        this.$scope.disable.installationInProgress = false;
+      },
+      (byoi) => {
+        this.$scope.byoi = byoi;
+        this.$scope.disable.install = true;
+        this.$scope.disable.installationInProgress = true;
+      },
+    );
   }
 
   checkIfStopBotherHousingPhone() {

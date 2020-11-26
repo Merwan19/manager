@@ -5,6 +5,7 @@ export default {
   bindings: {
     bandwidthInformations: '<',
     biosSettings: '<',
+    bringYourOwnImage: '<',
     changeOwnerUrl: '<',
     eligibleData: '<',
     goToSgxIntroduction: '<',
