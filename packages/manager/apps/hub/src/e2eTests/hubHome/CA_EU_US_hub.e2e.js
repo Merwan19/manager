@@ -28,8 +28,6 @@ fixture('check hub page')
 
 test('it should access to Manager Hub', async (t) => {
   await t.expect(navbar.navbar.exists).ok();
-}).after(async () => {
-  await userRoleDisconnect(config);
 });
 
 test('confirm link to all orders list', async () => {
