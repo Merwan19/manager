@@ -161,6 +161,7 @@ angular
             $scope.progress.ws = $translate.instant(
               'server_configuration_installation_progress_cancel_success',
             );
+            $scope.serverCtrl.$scope.disable.installationInProgress = false;
           },
           (data) => {
             $scope.progress.disableCancel = true;
