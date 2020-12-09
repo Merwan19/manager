@@ -13,6 +13,16 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
       DedicatedServerInstallImageConfigDriveCtrl.validateSshFormat;
   }
 
+  /*= =====================================
+  =            Initialization            =
+  ====================================== */
+
+  $onInit() {
+    this.addMetadata();
+  }
+
+  /* -----  End of Initialization  ------*/
+
   addMetadata() {
     this.model.configdrive.metadata.push({
       added: false,
@@ -38,8 +48,4 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
   }
 
   /* -----  End of Events  ------*/
-
-  $onInit() {
-    this.addMetadata();
-  }
 }

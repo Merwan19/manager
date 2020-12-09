@@ -8,6 +8,18 @@ export default class DedicatedServerInstallImageConfigCtrl {
     });
   }
 
+  /*= =====================================
+  =            Initialization            =
+  ====================================== */
+
+  $onInit() {
+    this.model.imageType = head(this.imageTypeEnum);
+    this.model.checkSumType = head(this.checksumTypeEnum);
+    this.addHttpHeader();
+  }
+
+  /* -----  End of Initialization  ------*/
+
   /*= =============================
   =            Events            =
   ============================== */
@@ -22,16 +34,4 @@ export default class DedicatedServerInstallImageConfigCtrl {
   }
 
   /* -----  End of Events  ------*/
-
-  /*= =====================================
-  =            Initialization            =
-  ====================================== */
-
-  $onInit() {
-    this.model.imageType = head(this.imageTypeEnum);
-    this.model.checkSumType = head(this.checksumTypeEnum);
-    this.addHttpHeader();
-  }
-
-  /* -----  End of Initialization  ------*/
 }
