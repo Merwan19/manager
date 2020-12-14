@@ -1,5 +1,3 @@
-import head from 'lodash/head';
-
 export default class DedicatedServerInstallImageConfigCtrl {
   addHttpHeader() {
     this.model.httpHeader.push({
@@ -13,8 +11,8 @@ export default class DedicatedServerInstallImageConfigCtrl {
   ====================================== */
 
   $onInit() {
-    this.model.imageType = head(this.imageTypeEnum);
-    this.model.checkSumType = head(this.checksumTypeEnum);
+    [this.model.imageType] = this.imageTypeEnum;
+    [this.model.checkSumType] = this.checksumTypeEnum;
     this.addHttpHeader();
   }
 

@@ -1,4 +1,7 @@
+import get from 'lodash/get';
 import filter from 'lodash/filter';
+
+import { BYOI_GUIDE_URLS } from './constants';
 
 export default class DedicatedServerInstallImageCtrl {
   /* @ngInject */
@@ -7,6 +10,21 @@ export default class DedicatedServerInstallImageCtrl {
 
     this.launchInstallError = null;
   }
+
+  /*= =====================================
+  =            Initialization            =
+  ====================================== */
+
+  $onInit() {
+    console.log(this.user);
+    this.byoiGuideLink = get(
+      BYOI_GUIDE_URLS,
+      this.user.ovhSubsidiary,
+      get(BYOI_GUIDE_URLS, 'GB'),
+    );
+  }
+
+  /* -----  End of Initialization  ------*/
 
   /*= =============================
   =            Events            =
