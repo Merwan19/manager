@@ -105,6 +105,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
+      stopInstance: /* @ngInject */ ($state, projectId) => (instance) =>
+        $state.go('pci.projects.project.instances.stop', {
+          projectId,
+          instanceId: instance.id,
+        }),
       reinstallInstance: /* @ngInject */ ($state, projectId) => (instance) =>
         $state.go('pci.projects.project.instances.reinstall', {
           projectId,
