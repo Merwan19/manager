@@ -16,7 +16,6 @@ export default class DedicatedServerInstallImageCtrl {
   ====================================== */
 
   $onInit() {
-    console.log(this.user);
     this.byoiGuideLink = get(
       BYOI_GUIDE_URLS,
       this.user.ovhSubsidiary,
