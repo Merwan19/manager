@@ -200,6 +200,12 @@ export default class PciProjectInstanceService {
     );
   }
 
+  stop(projectId, { id: instanceId }) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/instance/${instanceId}/stop`,
+    );
+  }
+
   reboot(projectId, { id: instanceId }, type) {
     return this.OvhApiCloudProjectInstance.v6().reboot(
       {
