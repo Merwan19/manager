@@ -297,7 +297,10 @@ angular
               $rootScope.$broadcast('dedicated.informations.reinstall', task);
               $scope.setAction(
                 'installation/progress/dedicated-server-installation-progress',
-                $scope.installation.server,
+                {
+                  ...$scope.currentActionData,
+                  server: $scope.installation.server,
+                },
               );
             },
             (data) => {
