@@ -63,15 +63,15 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.startInstance()"
-                    data-disabled="$ctrl.instance.status === 'ACTIVE'"
+                    data-disabled="$ctrl.instance.isStarted()"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_start_label"
                     ></span>
                 </oui-tile-button>
                 <oui-tile-button
-                    data-disabled="$ctrl.instance.status !== 'ACTIVE'"
                     data-on-click="$ctrl.stopInstance()"
+                    data-disabled="$ctrl.instance.isStopped()"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_stop_label"
