@@ -70,7 +70,7 @@
                         type="button"
                         class="btn btn-default"
                         data-ng-if="progress.errorMessage"
-                        data-ng-click="setAction('installation/choice/dedicated-server-installation-choice', progress.server)"
+                        data-ng-click="setAction('installation/choice/dedicated-server-installation-choice', { server: progress.server, user: currentActionData.user, serverCtrl: currentActionData.serverCtrl })"
                         data-translate="server_configuration_installation_progress_cancel_retry"
                     ></button>
                 </div>
