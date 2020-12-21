@@ -6,6 +6,7 @@ export default class ExchangeRemoveExchangeCtrl {
     $scope,
     Exchange,
     $translate,
+    atInternet,
     navigation,
     messaging,
     exchangeServiceInfrastructure,
@@ -13,6 +14,7 @@ export default class ExchangeRemoveExchangeCtrl {
   ) {
     this.services = {
       $scope,
+      atInternet,
       Exchange,
       $translate,
       navigation,
@@ -48,6 +50,14 @@ export default class ExchangeRemoveExchangeCtrl {
   }
 
   submit() {
+    this.atInternet.trackClick({
+      name: `web::microsoft::exchange::${
+        this.exchange.value.domain.split('-')[0] === 'hosted'
+          ? 'hosted'
+          : 'dedicated'
+      }::delete::confirm`,
+      type: 'action',
+    });
     this.services.messaging.writeSuccess(
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );

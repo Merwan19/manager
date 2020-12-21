@@ -1,4 +1,5 @@
 import angular from 'angular';
+import atInternet from '@ovh-ux/ng-at-internet';
 
 import cacheTemplate from './emailpro.template';
 import controllers from './emailproControllers.module';
@@ -23,6 +24,7 @@ angular
     'ui.bootstrap',
     'ngSanitize',
     'ng.ckeditor',
+    atInternet,
     controllers,
     services,
     upgrade,

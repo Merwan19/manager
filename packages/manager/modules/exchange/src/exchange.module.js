@@ -1,5 +1,6 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import atInternet from '@ovh-ux/ng-at-internet';
 
 import ExchangeAccountMfaCreate from './account/mfa/create';
 import ExchangeAccountMfaDelete from './account/mfa/delete';
@@ -28,6 +29,7 @@ angular
     'ui.bootstrap',
     'ngSanitize',
     'ng.ckeditor',
+    atInternet,
     components,
     controllers,
     directives,
