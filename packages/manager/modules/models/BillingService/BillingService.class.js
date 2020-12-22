@@ -12,7 +12,7 @@ export default class BillingService {
     Object.assign(this, service);
 
     this.id = service.id || service.serviceId;
-    this.expirationDate = moment(this.expiration);
+    this.expirationDate = moment(this.expiration).add(1, 'day');
     this.creationDate = moment(this.creation);
 
     if (this.status) {
