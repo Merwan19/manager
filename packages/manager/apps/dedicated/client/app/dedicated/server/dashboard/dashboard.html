@@ -880,6 +880,15 @@
                 user="$ctrl.user"
             ></dedicated-server-dashboard-advanced-features>
         </div>
+
+        <!-- Advices -->
+        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+            <ovh-up-sell-cross-sell
+                description="{{ ::'server_advices_dedicated_description' | translate }}"
+                advices="$ctrl.advices"
+            >
+            </ovh-up-sell-cross-sell>
+        </div>
     </div>
 
     <!-- QUOTA -->

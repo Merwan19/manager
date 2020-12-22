@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "Une erreur est survenue lors de la résiliation de votre service : {{error}}",
   "server_error_vrack_attach": "Une erreur est survenue lors de l'attachement du réseau privé : {{error}}",
   "server_error_vrack_detach": "Une erreur est survenue lors du détachement du réseau privé : {{error}}",
-  "server_error_bandwidth_order": "Une erreur est survenue lors de la commande de bande passante : {{error}}"
+  "server_error_bandwidth_order": "Une erreur est survenue lors de la commande de bande passante : {{error}}",
+  "server_advices_dedicated_description": "Votre activité nécessite un trafic avec un débit constant ? Bénéficiez d’une bande passante publique dédiée de 1 Gbit/s",
+  "server_advices_dedicated_advice1": "Activer la bande passante garantie"
 }

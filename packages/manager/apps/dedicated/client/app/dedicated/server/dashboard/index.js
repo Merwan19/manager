@@ -5,6 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
+import ovhManagerUpSellCrossSell from '@ovh-ux/manager-up-sell-cross-sell';
 
 import advancedFeatures from './advanced-features';
 
@@ -20,6 +21,7 @@ angular
     'oui',
     'pascalprecht.translate',
     'ui.router',
+    ovhManagerUpSellCrossSell,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

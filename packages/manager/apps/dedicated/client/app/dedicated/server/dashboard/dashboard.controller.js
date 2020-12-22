@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import find from 'lodash/find';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import some from 'lodash/some';
@@ -14,6 +15,7 @@ export default class DedicatedServerDashboard {
     $state,
     $stateParams,
     $translate,
+    $http,
     constants,
     DedicatedServerFeatureAvailability,
     Server,
@@ -22,6 +24,7 @@ export default class DedicatedServerDashboard {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$http = $http;
     this.$translate = $translate;
     this.constants = constants;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
@@ -72,6 +75,7 @@ export default class DedicatedServerDashboard {
     });
 
     this.loadStatistics();
+    this.advices = this.loadAdvices();
   }
 
   createChart(data) {
@@ -283,5 +287,43 @@ export default class DedicatedServerDashboard {
     return map(list, (value) =>
       value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y,
     );
+  }
+
+  loadAdvices() {
+    const { commercialRange } = this.server;
+    if (commercialRange && commercialRange.startsWith('ADVANCE')) {
+      return this.getBandwidth().then((plans) => {
+        const bandwidthGuaranteedPlans = find(
+          plans,
+          (plan) =>
+            plan.planCode === 'bandwidth-guaranteed-1000-ultimate-2019v1' ||
+            plan.planCode === 'bandwidth-guaranteed-1000-ultimate-2019v1-us',
+        );
+        if (bandwidthGuaranteedPlans) {
+          return this.getAdvices();
+        }
+        return null;
+      });
+    }
+    return null;
+  }
+
+  getAdvices() {
+    return [
+      {
+        localizedName: this.$translate.instant(
+          'server_advices_dedicated_advice1',
+        ),
+        href: this.orderPublicBandwidthLink,
+        tag:
+          'cross_sell::dedicated::bare_metal_advanced_without_guaranteed_bw::public_bandwidth_1gbps_unmetered_and_guaranteed',
+      },
+    ];
+  }
+
+  getBandwidth() {
+    return this.$http
+      .get(`/order/upgrade/baremetalPublicBandwidth/${this.server.name}`)
+      .then((res) => res.data);
   }
 }
