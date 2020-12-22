@@ -3,6 +3,7 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
+import Advice from './up-sell-cross-sell/advice.class';
 import { URLS, WEATHERMAP_URL } from './dashboard.constants';
 import { NEW_RANGE } from '../server.constants';
 
@@ -17,6 +18,7 @@ export default class DedicatedServerDashboard {
     constants,
     DedicatedServerFeatureAvailability,
     Server,
+    upSellCrossSellService,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -26,6 +28,7 @@ export default class DedicatedServerDashboard {
     this.constants = constants;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.Server = Server;
+    this.upSellCrossSellService = upSellCrossSellService;
   }
 
   $onInit() {
@@ -72,6 +75,15 @@ export default class DedicatedServerDashboard {
     });
 
     this.loadStatistics();
+    this.advice = new Advice(
+      this.$translate,
+      this.server.name,
+      this.server.commercialRange,
+      get(this, 'specifications.bandwidth.OvhToInternet.value'),
+      this.orderPublicBandwidthLink,
+      this.Server,
+      this.upSellCrossSellService,
+    );
   }
 
   createChart(data) {
