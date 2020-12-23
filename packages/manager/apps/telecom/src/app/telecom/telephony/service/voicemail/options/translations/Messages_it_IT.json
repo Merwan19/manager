@@ -1,7 +1,7 @@
 {
   "telephony_line_answer_voicemail_options_recording_title": "Benvenuto e registrazione dei messaggi",
   "telephony_line_answer_voicemail_options_recording": "Registrazione dei messaggi:",
-  "telephony_line_answer_voicemail_options_notifications": "Activation des notifications :",
+  "telephony_line_answer_voicemail_options_notifications": "Garder les messages après l'envoi des notifications :",
   "telephony_line_answer_voicemail_options_recording_disable_warn": "La disattivazione della registrazione dei messaggi vocali comporta l'invio di email con messaggi in allegato.",
   "telephony_line_answer_voicemail_options_greetings": "Messaggio di benvenuto della segreteria:",
   "telephony_line_answer_voicemail_options_recording_greet": "Preannuncio",

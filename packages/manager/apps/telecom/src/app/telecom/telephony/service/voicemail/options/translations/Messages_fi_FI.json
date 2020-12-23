@@ -1,7 +1,7 @@
 {
   "telephony_line_answer_voicemail_options_recording_title": "Etusivu ja viestien tallennus",
   "telephony_line_answer_voicemail_options_recording": "Viestien tallennus:",
-  "telephony_line_answer_voicemail_options_notifications": "Activation des notifications :",
+  "telephony_line_answer_voicemail_options_notifications": "Garder les messages après l'envoi des notifications :",
   "telephony_line_answer_voicemail_options_recording_disable_warn": "Ääniviestien tallennuksen poistaminen päältä keskeyttää liitetiedostoja sisältävien sähköpostiviestien lähetyksen.",
   "telephony_line_answer_voicemail_options_greetings": "Vastaajan pääviesti:",
   "telephony_line_answer_voicemail_options_recording_greet": "Esi-ilmoitus",

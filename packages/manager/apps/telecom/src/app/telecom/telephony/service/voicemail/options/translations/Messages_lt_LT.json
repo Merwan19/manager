@@ -1,7 +1,7 @@
 {
   "telephony_line_answer_voicemail_options_recording_title": "Išsaugoti žinutes ir grįžti į pradžią",
   "telephony_line_answer_voicemail_options_recording": "Žinučių išsaugojimas:",
-  "telephony_line_answer_voicemail_options_notifications": "Activation des notifications :",
+  "telephony_line_answer_voicemail_options_notifications": "Garder les messages après l'envoi des notifications :",
   "telephony_line_answer_voicemail_options_recording_disable_warn": "Išjungus balso pranešimų išsaugojimą taip pat bus nutrauktas el. laiškų su priedais siuntimas.",
   "telephony_line_answer_voicemail_options_greetings": "Pagrindinė atsakiklio žinutė:",
   "telephony_line_answer_voicemail_options_recording_greet": "Išankstinis pranešimas",
