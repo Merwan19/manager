@@ -185,6 +185,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      linkLogsDataPlatform: /* @ngInject */ ($state) =>
+        $state.href('dbaas-logs.order'),
     },
   });
 };

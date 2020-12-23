@@ -1,6 +1,6 @@
 {
-  "pci_projects_project_instances_instance_dashboard_title" : "Tableau de bord",
-  "pci_projects_project_instances_instance_vnc_title" : "Console VNC",
+  "pci_projects_project_instances_instance_dashboard_title": "Tableau de bord",
+  "pci_projects_project_instances_instance_vnc_title": "Console VNC",
 
   "pci_projects_project_instances_instance_manage_title": "Gestion",
 
@@ -55,5 +55,8 @@
 
   "pci_projects_project_instances_instance_connection_info_label": "Informations de connexion",
 
-  "pci_projects_project_instances_instance_ssh_key_label": "Clé SSH"
+  "pci_projects_project_instances_instance_ssh_key_label": "Clé SSH",
+
+  "pci_projects_project_instances_instance_advices_description": "Analysez vos logs en temps réel et soyez alerté en cas d'anomalies grâce à Logs Data Platform",
+  "pci_projects_project_instances_instance_advices_cta": "Bénéficier de Logs Data Platform"
 }

@@ -37,5 +37,6 @@ export default {
     scheduleAutoBackup: '<',
     guideUrl: '<',
     vncDisabled: '<',
+    linkLogsDataPlatform: '<',
   },
 };

@@ -16,6 +16,15 @@ export default class PciInstanceController {
 
   $onInit() {
     this.loadMessages();
+    this.advices = [
+      {
+        localizedName: this.$translate.instant(
+          'pci_projects_project_instances_instance_advices_cta',
+        ),
+        href: this.linkLogsDataPlatform,
+        tag: 'cross_sell::pci::no_ldp_yet::log_data_plateform',
+      },
+    ];
   }
 
   loadMessages() {
