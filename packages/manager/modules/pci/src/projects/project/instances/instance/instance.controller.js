@@ -15,6 +15,7 @@ export default class PciInstanceController {
   }
 
   $onInit() {
+    console.log('ZM:: linkLogsDataPlatform', this.linkLogsDataPlatform);
     this.loadMessages();
     this.advices = [
       {
